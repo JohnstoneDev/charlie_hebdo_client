@@ -1,22 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
+import MainDisplay from './Components/MainDisplay';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="App-header bg-black">
+        <h1 className='animate-pulse text-5xl text-orange-400'> JE SUIS CHARLIE </h1>
+        <MainDisplay />
       </header>
     </div>
   );
