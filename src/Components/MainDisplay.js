@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 // const mySecret = process.env.REACT_APP_NEWS_API_KEY 
-// const gNewsKey = process.env.REACT_APP_GNEWS_API_KEY 
+const gNewsKey = process.env.REACT_APP_GNEWS_API_KEY 
 
 function MainDisplay(){
+
+    console.log(gNewsKey);
 
     // function getGnews(){
     //     fetch(`https://gnews.io/api/v4/world?token=${gNewsKey}&topic=breaking-news`)
