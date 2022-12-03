@@ -28,5 +28,3 @@ export default MainDisplay;
 
 
 // Attempt push after merge
-
-// 'https://newsapi.org/v2/everything?q=Apple&from=2022-12-03&sortBy=popularity&apiKey=API_KEY'
