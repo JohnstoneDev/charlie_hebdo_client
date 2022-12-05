@@ -1,26 +1,40 @@
-import { useEffect } from "react";
+import { useEffect, useState  } from "react";
+import ArticleList from "./ArticlesList";
+import LoginForm from "./LoginForm";
+
 // const mySecret = process.env.REACT_APP_NEWS_API_KEY 
 // const gNewsKey = process.env.REACT_APP_GNEWS_API_KEY 
 
+
 function MainDisplay(){
+    const [ articles, setArticles ] = useState([])
 
-    // function getGnews(){
-    //     fetch(`https://gnews.io/api/v4/world?token=${gNewsKey}&topic=breaking-news`)
-    //     .then(r => r.json())
-    //     .then(d => console.log(d))
-    // }
+    function addArticleToReadingList(){
 
+    }
+
+    function deleteArticleFromReadingList(){
+        
+    }
+
+    function getGnews(){
+        // const newsUrl = `https://gnews.io/api/v4/top-headlines?token=${gNewsKey}&topic=world&lang=en&max=20`   
+        fetch('http://localhost:3000/articles')
+        .then(r => r.json())
+        .then(d => { 
+            console.log(d)
+            setArticles(d)
+        })
+}
+    
     useEffect(() => { 
-        // fetch(`https://newsapi.org/v2/everything?q=Apple&from=2022-12-03&sortBy=popularity&apiKey=${mySecret}`)
-        // .then(r => r.json())
-        // .then(d => console.log(d.articles))
-
-        // getGnews()
+        getGnews();
     },[])
     return(
         <>
-        <h2 className="text-orange-200 pt-3 text-2xl">All Components Should be housed here and everything else will receive state as props!</h2>
-     </>
+            <LoginForm/>
+            <ArticleList articles={articles}/>
+        </>
     )
 }
 
