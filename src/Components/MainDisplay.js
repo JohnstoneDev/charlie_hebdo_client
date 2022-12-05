@@ -1,5 +1,6 @@
 import { useEffect, useState  } from "react";
 import ArticleList from "./ArticlesList";
+import LoginForm from "./LoginForm";
 
 // const mySecret = process.env.REACT_APP_NEWS_API_KEY 
 // const gNewsKey = process.env.REACT_APP_GNEWS_API_KEY 
@@ -31,6 +32,7 @@ function MainDisplay(){
     },[])
     return(
         <>
+            <LoginForm/>
             <ArticleList articles={articles}/>
         </>
     )
