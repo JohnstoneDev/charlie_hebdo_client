@@ -2,6 +2,7 @@ import './App.css';
 import MainDisplay from './Components/MainDisplay';
 
 function App() {
+  const [user,setUser] = useState({})
   return (
     <div className="App">
       <header className="App-header bg-black">
