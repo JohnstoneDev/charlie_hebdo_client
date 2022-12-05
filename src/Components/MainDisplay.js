@@ -15,17 +15,18 @@ function MainDisplay(){
     function deleteArticleFromReadingList(){
         
     }
+
+    function getGnews(){
+        // const newsUrl = `https://gnews.io/api/v4/top-headlines?token=${gNewsKey}&topic=world&lang=en&max=20`   
+        fetch('http://localhost:3000/articles')
+        .then(r => r.json())
+        .then(d => { 
+            console.log(d)
+            setArticles(d)
+        })
+}
     
     useEffect(() => { 
-        function getGnews(){
-            // const newsUrl = `https://gnews.io/api/v4/top-headlines?token=${gNewsKey}&topic=world&lang=en&max=20`   
-            fetch('http://localhost:3000/articles')
-            .then(r => r.json())
-            .then(d => { 
-                console.log(d)
-                setArticles(d)
-            })
-    }
         getGnews();
     },[])
     return(
