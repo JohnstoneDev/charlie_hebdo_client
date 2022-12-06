@@ -1,58 +1,77 @@
 import { useEffect, useState  } from "react";
-import { Link } from "react-router-dom";
+import { Link , Switch , Route } from "react-router-dom";
 import ArticleList from "./ArticlesList";
+import ReadingList from "./ReadingList";
+
 
 // const mySecret = process.env.REACT_APP_NEWS_API_KEY 
 // const gNewsKey = process.env.REACT_APP_GNEWS_API_KEY 
 
 
 function MainDisplay({ user }){
-    const [ articles ] = useState([])
+    const [ articles, setArticles ] = useState([]);
+    const [ articlesInDb, setArticlesInDb ] = useState([]);
 
-    // function addArticleToReadingList(){
+    function addArticleToReadingList(article){
+        console.log(article.toUpperCase(), "<= This should be an article Object")
+    }
 
-    // }
-
-    // function deleteArticleFromReadingList(){
+    function deleteArticleFromReadingList(article){
         
-    // }
+    }
 
     function getGnews(){
         // const newsUrl = `https://gnews.io/api/v4/top-headlines?token=${gNewsKey}&topic=world&lang=en&max=20`   
         
-        // fetch('http://localhost:3000/articles')
-        // .then(r => r.json())
-        // .then(d => { 
-        //     console.log(d)
-        //     setArticles(d)
-        // })
+        fetch('/articles')
+        .then(r => r.json())
+        .then(d => { 
+            setArticles(d)
+        })
 }
+
+    function getReadingList(){
+        fetch('/database_articles')
+        .then(r => r.json())
+        .then(d => setArticlesInDb(d))
+    }
     
     useEffect(() => { 
         getGnews();
+        getReadingList();
     },[])
 
-    if(user){
+    // if(user){
         return(
-            <>
-                <ArticleList articles={articles}/>
-            </>
-        )
-    } else { 
-        return (
             <div>
-                <h2> You Need to Log In or Sign Up To Access The Site</h2>
-                <div className="flex text-center justify-center gap-4">
-                    <button>
-                        <Link to="/login">Log In Here</Link>
-                    </button>
-                    <button>
-                        <Link to="/signup">Sign Up Here </Link>
-                    </button>
-                </div>
-            </div>
+                <Link to="/home/reading_list" className="text-xl">Your Reading List </Link>
+                <Switch>
+                     <Route path="/home/reading_list">
+                        <ReadingList articles={articlesInDb} clickFunction={deleteArticleFromReadingList} />
+                    </Route>
+
+                    <Route path="/home">
+                        <ArticleList articles={articles} clickFunction={addArticleToReadingList}/>
+                    </Route>
+                </Switch>
+            </div>  
         )
-    }
+
+    // } else { 
+    //     return (
+    //         <div>
+    //             <h2> You Need to Log In or Sign Up To Access The Site</h2>
+    //             <div className="flex text-center justify-center gap-4">
+    //                 <button>
+    //                     <Link to="/login">Log In Here</Link>
+    //                 </button>
+    //                 <button>
+    //                     <Link to="/signup">Sign Up Here </Link>
+    //                 </button>
+    //             </div>
+    //         </div>
+    //     )
+    // }
 
     
 }

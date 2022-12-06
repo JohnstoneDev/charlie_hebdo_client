@@ -23,11 +23,11 @@ function App() {
 function Navigation(){
   return(
     <>
-      <div hidden={user}>
+      <div hidden={user} className="p-2 text-xl">
         <Link to='/signup'>Sign Up </Link>
         <Link to="/login">Log In</Link>
       </div>
-        <Link to='/home'> Home </Link>
+        <Link to='/home' className='text-xl'> Home </Link>
       <div>
         <button hidden={!user} onClick={logoutUser}>LOG OUT</button> 
       </div>
@@ -37,21 +37,21 @@ function Navigation(){
 
 // Auto Login 
 
-useEffect(() => {
-  // auto-login
-  fetch("/profile").then((r) => {
-    if (r.ok) {
-      r.json().then((user) => setUser(user));
-      redirect('/home')
-    }
-  });
-}, []);
+// useEffect(() => {
+//   // auto-login
+//   fetch("/profile").then((r) => {
+//     if (r.ok) {
+//       r.json().then((user) => setUser(user));
+//       redirect('/home')
+//     }
+//   });
+// }, []);
 
-if (!user) redirect("/login") 
-// {/* <LoginForm onLogin={setUser} />; */}
+// if (!user) redirect("/login") 
+// // {/* <LoginForm onLogin={setUser} />; */}
 
   return (
-    <div className="App min-h-screen bg-slate-200">
+    <div className="App min-h-screen bg-green-200 leading-relaxed font-mono anitialized text-base tracking-wide font-medium capitalize">
           <Navigation />
       <Switch>
         <Route path="/signup">
@@ -59,14 +59,14 @@ if (!user) redirect("/login")
         </Route>
 
       <Route path="/login">
-        <header className="App-header grid grid-cols-2">
-          <h1 className='animate-pulse text-5xl text-orange-400'> JE SUIS CHARLIE </h1>
-          <LoginForm onLogin={setUser}/>
-        </header>
+        <div className='align-center justify-center m-10 p-20'>
+              <h1 className='animate-pulse text-5xl text-blue-700'> JE SUIS CHARLIE ,your free news finder! </h1>
+              <LoginForm onLogin={setUser}/>
+          </div>
       </Route>
 
         <Route path="/">
-          <MainDisplay user={user}/>
+          <MainDisplay/>
         </Route>
       </Switch>
    </div>
@@ -75,3 +75,6 @@ if (!user) redirect("/login")
 
 
 export default App; 
+
+
+// className='p-20 grid gap-4 m-20'

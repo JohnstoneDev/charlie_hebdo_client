@@ -120,5 +120,7 @@
                 "url": "https://www.cnn.com"
             }
         }
-    ]
+    ], 
+    "database_articles" :[]
+    
 }
