@@ -12,14 +12,6 @@ function MainDisplay({ user }){
     const [ articles, setArticles ] = useState([]);
     const [ articlesInDb, setArticlesInDb ] = useState([]);
 
-    function addArticleToReadingList(article){
-        console.log(article.toUpperCase(), "<= This should be an article Object")
-    }
-
-    function deleteArticleFromReadingList(article){
-        
-    }
-
     function getGnews(){
         // const newsUrl = `https://gnews.io/api/v4/top-headlines?token=${gNewsKey}&topic=world&lang=en&max=20`   
         
@@ -47,11 +39,11 @@ function MainDisplay({ user }){
                 <Link to="/home/reading_list" className="text-xl">Your Reading List </Link>
                 <Switch>
                      <Route path="/home/reading_list">
-                        <ReadingList articles={articlesInDb} clickFunction={deleteArticleFromReadingList} />
+                        <ReadingList articles={articlesInDb} updateFunction={getReadingList} />
                     </Route>
 
                     <Route path="/home">
-                        <ArticleList articles={articles} clickFunction={addArticleToReadingList}/>
+                        <ArticleList articles={articles} updateFunction={getReadingList}/>
                     </Route>
                 </Switch>
             </div>  

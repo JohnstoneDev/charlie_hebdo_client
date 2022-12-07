@@ -1,4 +1,4 @@
-function Article( { article , clickFunction , user }){ 
+function Article( { article , updateFunction , user }){ 
     const { title, description , content, url , image , source } = article 
 
     function postToDatabase(){
@@ -14,13 +14,17 @@ function Article( { article , clickFunction , user }){
             // user_id : user.id 
         }
 
-        console.log(thisArticle); 
+        // console.log(thisArticle); 
 
-        // fetch('/database_articles',{
-        //     method : 'POST', 
-        //     headers : { 'Content-Type' : "application/json"}, 
-        //     body : JSON.stringify(thisArticle)
-        // })
+        fetch('/database_articles',{
+            method : 'POST', 
+            headers : { 'Content-Type' : "application/json"}, 
+            body : JSON.stringify(thisArticle)
+        })
+        .then(r => r.json())
+        .then(() => {
+            updateFunction()
+        })
 
     }
 

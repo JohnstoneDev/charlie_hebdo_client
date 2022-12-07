@@ -75,6 +75,3 @@ function Navigation(){
 
 
 export default App; 
-
-
-// className='p-20 grid gap-4 m-20'
