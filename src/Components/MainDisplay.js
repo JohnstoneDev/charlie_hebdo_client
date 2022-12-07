@@ -1,6 +1,7 @@
 import { useEffect, useState  } from "react";
 import { Link , Switch , Route } from "react-router-dom";
 import ArticleList from "./ArticlesList";
+import ArticleSummaryList from "./ArticlesSummaryList";
 import ReadingList from "./ReadingList";
 
 
@@ -11,6 +12,7 @@ import ReadingList from "./ReadingList";
 function MainDisplay({ user }){
     const [ articles, setArticles ] = useState([]);
     const [ articlesInDb, setArticlesInDb ] = useState([]);
+    const [ summaries, setSummaries ] = useState([]);
 
     function getGnews(){
         // const newsUrl = `https://gnews.io/api/v4/top-headlines?token=${gNewsKey}&topic=world&lang=en&max=20`   
@@ -27,19 +29,34 @@ function MainDisplay({ user }){
         .then(r => r.json())
         .then(d => setArticlesInDb(d))
     }
+
+    function getAllSummarries(){
+        fetch('/summaries')
+        .then(r => r.json())
+        .then(d => { 
+           console.log(d) 
+            setSummaries(d)
+        })
+    }
     
     useEffect(() => { 
         getGnews();
         getReadingList();
+        getAllSummarries()
     },[])
 
     // if(user){
         return(
             <div>
                 <Link to="/home/reading_list" className="text-xl">Your Reading List </Link>
+                <Link to="/home/my_summaries" className="text-xl">Your Summaries</Link>
                 <Switch>
                      <Route path="/home/reading_list">
                         <ReadingList articles={articlesInDb} updateFunction={getReadingList} />
+                    </Route>
+
+                    <Route path="/home/my_summaries">
+                        <ArticleSummaryList summaries={summaries} />
                     </Route>
 
                     <Route path="/home">
