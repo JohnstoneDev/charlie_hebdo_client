@@ -9,12 +9,14 @@ import { redirect } from 'react-router';
 
 function App() {
   const [user, setUser ] = useState(null) 
+  const [loggedIn, setLoggedIn ] = useState(false);
 
   function logoutUser(){
     fetch('/logout',{ method : 'DELETE' })
     .then(r => {
       if(r.ok){
         setUser(null)
+        setLoggedIn(false);
       }
     })
   }
@@ -37,36 +39,34 @@ function Navigation(){
 
 // Auto Login 
 
-// useEffect(() => {
-//   // auto-login
-//   fetch("/profile").then((r) => {
-//     if (r.ok) {
-//       r.json().then((user) => setUser(user));
-//       redirect('/home')
-//     }
-//   });
-// }, []);
+useEffect(() => {
+  fetch("/profile").then((r) => {
+    if (r.ok) {
+      r.json().then((user) => setUser(user));
+    }
+  })
+  .catch(e => console.log(e)) 
+},[]);
 
-// if (!user) redirect("/login") 
-// // {/* <LoginForm onLogin={setUser} />; */}
+if (!user) redirect("/login") 
 
   return (
     <div className="App min-h-screen bg-green-200 leading-relaxed font-mono anitialized text-base tracking-wide font-medium capitalize">
           <Navigation />
       <Switch>
         <Route path="/signup">
-          <SignUpForm onLogin={setUser}/>
+          <SignUpForm onLogin={setUser} session={loggedIn} logFunc={setLoggedIn}/>
         </Route>
 
       <Route path="/login">
         <div className='align-center justify-center m-10 p-20'>
               <h1 className='animate-pulse text-5xl text-blue-700'> JE SUIS CHARLIE ,your free news finder! </h1>
-              <LoginForm onLogin={setUser}/>
+              <LoginForm onLogin={setUser} session={loggedIn} logFunc={setLoggedIn}/>
           </div>
       </Route>
 
         <Route path="/">
-          <MainDisplay/>
+          <MainDisplay user={user} session={loggedIn} logFunc={setLoggedIn}/>
         </Route>
       </Switch>
    </div>

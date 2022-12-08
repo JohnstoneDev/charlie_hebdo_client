@@ -1,37 +1,38 @@
 import { useState } from 'react'; 
 
-function ArticleInDb( { article , updateFunction , user }){ 
-    const { id ,title, description , content, url , image , source_name , source_url ,summary  } = article 
+function ArticleInDb( { article , updateFunction  }){ 
+    const { id ,title, description , content, url , image , source_name , summary  } = article 
     const [ userSummary , setUserSummary ] = useState(""); 
     const [ toggleSummary, setToggleSummary ] = useState(true); 
 
     function deleteFromDatabase(){
-        const thisArticle = {
-            title : title , 
-            description : description, 
-            content : content , 
-            url : url, 
-            image : image, 
-            source_name : source_name, 
-            source_url : source_url, 
-            summary : ""
-            // user_id : user.id 
-        }
+        // const thisArticle = {
+        //     title : title , 
+        //     description : description, 
+        //     content : content , 
+        //     url : url, 
+        //     image : image, 
+        //     source_name : source_name, 
+        //     source_url : source_url, 
+        //     summary : ""
+        //     // user_id : user.id 
+        // }
 
-        console.log(thisArticle); 
+        // console.log(thisArticle); 
 
-        fetch(`/database_articles/${id}`,{
+        fetch(`/articles/${id}`,{
             method : 'DELETE', 
             headers : { 'Content-Type' : "application/json"}, 
         })
         .then(r => r.json())
         .then(() => updateFunction())
+        .catch(e => console.log(e))
       }
 
       function patchSummary(e){
         e.preventDefault();
 
-        fetch(`/database_articles/${id}`,{
+        fetch(`/articles/${id}`,{
             method : 'PATCH',
             headers : { "Content-Type" : "application/json"},
             body : JSON.stringify( { summary : userSummary })
@@ -43,6 +44,7 @@ function ArticleInDb( { article , updateFunction , user }){
             console.log(toggleSummary)
             setToggleSummary(true)
         })
+        .catch(e => console.log(e))
       }
 
     return(

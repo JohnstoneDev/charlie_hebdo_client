@@ -25,31 +25,40 @@ function SignUpForm( { onLogin }){
   }
 
     return(
-        <div className='mt-0 '>
-            <form onSubmit={userSignUp} className="grid gap-5 p-10 m-40">
-                <input type="text" 
-                className="text-black p-2 m-2 border rounded-lg " 
-                value={username} 
-                onChange={(e) => {
-                    setUsername(e.target.value)
-                    }}
-                    placeholder="Enter your username"/> 
+        <div className='m-10 p-10'>
+            <div>
+              <h1 className='animate-pulse text-5xl text-blue-700'>
+                Welcome to Charlie Hebdo News Collector! Enjoy Your Stay!
+              </h1>
+            </div>
 
-                <input type="password" 
-                className="text-black p-2 m-2 border rounded-lg " 
-                value={password} 
-                onChange={(e) => {
-                    setPassword(e.target.value)
-                    }}
-                    placeholder="Enter Password"/> 
-                <button onClick={userSignUp} className='bg-stone-200 p-3 w-40 hover:bg-blue-500 text-slate-500 hover:text-white border rounded-lg'>Sign Up</button>
+            <div className='ml-44'>
+                <form onSubmit={userSignUp} className="grid gap-5 p-12 ml-10">
+                    <input type="text" 
+                    className="text-black p-2 m-2 border rounded-lg w-6/12" 
+                    value={username} 
+                    onChange={(e) => {
+                        setUsername(e.target.value)
+                        }}
+                        placeholder="Pick a username"/> 
 
-                <div hidden={errors.length <= 0 }>
-                    {errors.map((err) => {
-                        return <h4 key={errors.indexOf(err)}>{err}</h4>
-                        })}
-                </div>
-            </form>
+                    <input type="password" 
+                    className="text-black p-2 m-2 border rounded-lg w-6/12" 
+                    value={password} 
+                    onChange={(e) => {
+                        setPassword(e.target.value)
+                        }}
+                        placeholder="Enter Password (minimum 8 characters)"/> 
+                    <button onClick={userSignUp} className='bg-stone-200 p-3 w-40 hover:bg-blue-500 text-slate-500 hover:text-white border rounded-lg'>Sign Up</button>
+
+                    <div hidden={errors.length <= 0 }>
+                        {errors.map((err) => {
+                            return <h4 key={errors.indexOf(err)} className="text-xl text-red-500 italic">{err} !</h4>
+                            })}
+                    </div>
+                </form>
+            </div>
+           
     </div>
     )
   }

@@ -1,15 +1,14 @@
-import React from "react"
 import ArticleSummary from "./ArticleSummary"
 
-function ArticleSummaryList({ summaries }) {
+function ArticleSummaryList({ allSummaries }) {
 
     return (
         <>
             <div>
                 {
-                    summaries.map((summary,index)=>{
+                    allSummaries.map((aSummary,index)=>{
                         return(
-                            <ArticleSummary summary={summary} key={index} />
+                            <ArticleSummary aSummary={aSummary} key={index} />
                         )
                     })
                 }

@@ -5,7 +5,7 @@ function ReadingList( { articles , updateFunction }){
 
     useEffect(() => {
 
-    },[articles])
+    },[])
 
     return (
         <div>

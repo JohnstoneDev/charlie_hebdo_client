@@ -2,6 +2,7 @@ function Article( { article , updateFunction , user }){
     const { title, description , content, url , image , source } = article 
 
     function postToDatabase(){
+
         const thisArticle = {
             title : title , 
             description : description, 
@@ -10,13 +11,13 @@ function Article( { article , updateFunction , user }){
             image : image, 
             source_name : source.name, 
             source_url : source.url, 
-            summary : ""
-            // user_id : user.id 
+            summary : "",
+            user_id : user.id 
         }
 
         // console.log(thisArticle); 
 
-        fetch('/database_articles',{
+        fetch('/articles',{
             method : 'POST', 
             headers : { 'Content-Type' : "application/json"}, 
             body : JSON.stringify(thisArticle)
@@ -25,6 +26,7 @@ function Article( { article , updateFunction , user }){
         .then(() => {
             updateFunction()
         })
+        .catch(e => console.log(e))
 
     }
 
