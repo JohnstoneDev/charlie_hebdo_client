@@ -14,7 +14,6 @@ function MainDisplay({ user }){
 
     function getGnews(){
         const newsUrl = `https://gnews.io/api/v4/top-headlines?token=${gNewsKey}&topic=world&lang=en&max=20`   
-        console.log(newsUrl); 
 
         fetch(newsUrl)
         .then(r => r.json())
