@@ -12,7 +12,7 @@ function App() {
   const [loggedIn, setLoggedIn ] = useState(false);
 
   function logoutUser(){
-    fetch('/logout',{ method : 'DELETE' })
+    fetch('https://web-production-045a.up.railway.app/logout',{ method : 'DELETE' })
     .then(r => {
       if(r.ok){
         setUser(null)

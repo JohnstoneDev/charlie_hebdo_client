@@ -6,20 +6,7 @@ function ArticleInDb( { article , updateFunction  }){
     const [ toggleSummary, setToggleSummary ] = useState(true); 
 
     function deleteFromDatabase(){
-        // const thisArticle = {
-        //     title : title , 
-        //     description : description, 
-        //     content : content , 
-        //     url : url, 
-        //     image : image, 
-        //     source_name : source_name, 
-        //     source_url : source_url, 
-        //     summary : ""
-        //     // user_id : user.id 
-        // }
-
-        // console.log(thisArticle); 
-
+      
         fetch(`https://web-production-045a.up.railway.app/articles/${id}`,{
             method : 'DELETE', 
             headers : { 'Content-Type' : "application/json"}, 
