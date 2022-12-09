@@ -4,6 +4,7 @@ function SignUpForm( { onLogin }){
     const [ username, setUsername ] = useState(""); 
     const [ password, setPassword ] = useState("");
     const [ errors, setErrors ] = useState([]);
+    const [ hideErrors, setHideErrors ] = useState(true);
 
     function userSignUp(e){
         e.preventDefault()
@@ -17,9 +18,13 @@ function SignUpForm( { onLogin }){
             if(r.ok){
                 r.json().then(user => onLogin(user))
             } else { 
-                r.json().then(e => { 
-                    setErrors(e.errors)
-                    })
+                r.json().then((err) => {
+                    setTimeout(() => {
+                        setErrors(err.errors)
+                        setHideErrors(false)
+                    },3000)
+                    setHideErrors(true);
+                })
             }
         })
   }
@@ -51,7 +56,7 @@ function SignUpForm( { onLogin }){
                         placeholder="Enter Password (minimum 8 characters)"/> 
                     <button onClick={userSignUp} className='bg-stone-200 p-3 w-40 hover:bg-blue-500 text-slate-500 hover:text-white border rounded-lg'>Sign Up</button>
 
-                    <div hidden={errors.length <= 0 }>
+                    <div hidden={hideErrors}>
                         {errors.map((err) => {
                             return <h4 key={errors.indexOf(err)} className="text-xl text-red-500 italic">{err} !</h4>
                             })}
