@@ -20,7 +20,7 @@ function ArticleInDb( { article , updateFunction  }){
 
         // console.log(thisArticle); 
 
-        fetch(`/articles/${id}`,{
+        fetch(`https://web-production-045a.up.railway.app/articles/${id}`,{
             method : 'DELETE', 
             headers : { 'Content-Type' : "application/json"}, 
         })
@@ -32,7 +32,7 @@ function ArticleInDb( { article , updateFunction  }){
       function patchSummary(e){
         e.preventDefault();
 
-        fetch(`/articles/${id}`,{
+        fetch(`https://web-production-045a.up.railway.app/articles/${id}`,{
             method : 'PATCH',
             headers : { "Content-Type" : "application/json"},
             body : JSON.stringify( { summary : userSummary })

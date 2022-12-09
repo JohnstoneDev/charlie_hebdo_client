@@ -10,7 +10,7 @@ function LoginForm({ onLogin }){
     function fetchUser(e){
         e.preventDefault(); 
         
-        fetch('/login', {
+        fetch('https://web-production-045a.up.railway.app/login', {
             method : 'POST',
             headers : {
                 "Content-Type" : "application/json"

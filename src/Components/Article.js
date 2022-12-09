@@ -17,7 +17,7 @@ function Article( { article , updateFunction , user }){
 
         // console.log(thisArticle); 
 
-        fetch('/articles',{
+        fetch('https://web-production-045a.up.railway.app/articles',{
             method : 'POST', 
             headers : { 'Content-Type' : "application/json"}, 
             body : JSON.stringify(thisArticle)

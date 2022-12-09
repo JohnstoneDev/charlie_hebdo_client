@@ -26,13 +26,13 @@ function MainDisplay({ user }){
 }
 
     function getReadingList(){
-        fetch('/articles')
+        fetch('https://web-production-045a.up.railway.app/articles')
         .then(r => r.json())
         .then(d => setArticlesInDb(d))
     }
 
     function getAllSummarries(){
-        fetch('/summaries')
+        fetch('https://web-production-045a.up.railway.app/summaries')
         .then(r => r.json())
         .then(d => { 
             setSummaries(d)
