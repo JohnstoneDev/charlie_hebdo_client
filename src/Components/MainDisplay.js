@@ -70,7 +70,7 @@ function MainDisplay({ user }){
     } else { 
         return (
             <div className="p-4 m-4 text-xl">
-                <h2> You Need to Log In or Sign Up To Access The Site</h2>
+                <h2 className="p-2 text-xl"> You Need to Log In or Sign Up To Access The Site</h2>
                 <div className="flex text-center justify-center gap-4 p-6">
                     <button className="border rounded-lg p-2 bg-stone-300 text-blue-500 hover:text-slate-50 hover:bg-blue-500">
                         <Link to="/login">Log In Here</Link>
